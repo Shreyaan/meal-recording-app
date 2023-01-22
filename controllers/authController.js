@@ -43,6 +43,7 @@ exports.signup = (req, res) => {
 exports.login = (req, res) => {
   // Validate the input fields
   const { email, password } = req.body;
+  console.log(email, password);
   if (!email || !password) {
     return res.status(400).json({ message: "Missing email or password" });
   }
@@ -55,7 +56,7 @@ exports.login = (req, res) => {
         .getIdToken()
         .then((token) => {
           // check if user exists in our DB
-          User.findOne({ firebase_id: userCred.user.uid }, (err, user) => {
+          User.findOne({ email: email}, (err, user) => {
             if (err) return res.status(500).json({ message: err.message });
             if (!user)
               return res.status(404).json({ message: "User not found" });

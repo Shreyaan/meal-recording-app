@@ -18,6 +18,26 @@ exports.checkToken = (req, res, next) => {
         // Verify the token
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
         req.user = decoded.user;
+
+        next();
+    } catch (error) {
+        if(!res.headersSent)  return res.status(400).json({ message: 'Invalid token.' });
+    }
+};
+
+exports.isadmin = (req, res, next) => {
+    let role = req.user.role;
+    console.log(req.user);
+    console.log(role);
+    // Check if no token was provided
+    if (!role) {
+        return res.status(401).json({ message: 'no role is given to you' });
+    }
+    try {
+        //if not admin then return
+        if (role != 'admin') {
+            return res.status(401).json({ message: 'you are not admin' });
+        }
         next();
     } catch (error) {
         if(!res.headersSent)  return res.status(400).json({ message: 'Invalid token.' });

@@ -6,6 +6,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 const authRoutes = require('./routes/auth');
 const mealRoutes = require('./routes/meal');
+const adminRoutes = require('./routes/admin');
 
 const authMiddleware = require('./middleware/auth');
 
@@ -27,6 +28,7 @@ mongoose.connect(process.env.MONGO_URI, {
 
 // Use routes
 app.use('/api/auth', authRoutes);
+app.use('/api/admin', authMiddleware.checkToken, authMiddleware.isadmin , adminRoutes);
 app.use('/api/meals', authMiddleware.checkToken, mealRoutes);
 
 // / home route to welcome users
