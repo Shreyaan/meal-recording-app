@@ -20,6 +20,7 @@
     "jsonwebtoken": "^9.0.0",
     "mongodb": "^4.13.0",
     "mongoose": "^6.8.3",
+    "nutritionix-api": "^1.0.4",
     "uuid": "^9.0.0"
   }
 }
