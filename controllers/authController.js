@@ -43,11 +43,11 @@ exports.signup = (req, res) => {
 exports.login = (req, res) => {
   // Validate the input fields
   const { email, password } = req.body;
-  console.log(email, password);
+  
   if (!email || !password) {
     return res.status(400).json({ message: "Missing email or password" });
   }
-
+ let userObj;
   firebase
     .auth()
     .signInWithEmailAndPassword(email, password)
@@ -61,9 +61,10 @@ exports.login = (req, res) => {
             if (!user)
               return res.status(404).json({ message: "User not found" });
             // create JWT
+            userObj = user;
             jwt.sign({ user }, process.env.JWT_SECRET, (err, token) => {
               if (err) return res.status(500).json({ message: err.message });
-              return res.json({ token });
+              return res.json({ token , role: userObj.role , email: userObj.email  });
             });
           });
         })
