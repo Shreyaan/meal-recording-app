@@ -136,9 +136,21 @@ exports.createCustomMeal = (req, res) => {
 };
 
 exports.getMeals = (req, res) => {
-  Meal.find({ user_id: req.user._id }, (err, meal) => {
+  const page = parseInt(req.query.page) || 1;
+  const limit = parseInt(req.query.limit) || 10;
+  const skip = (page - 1) * limit;
+
+  Meal.countDocuments({ user_id: req.user._id }, (err, total) => {
     if (err) return res.status(500).json({ message: err.message });
-    return res.json(meal);
+
+    Meal.find({ user_id: req.user._id })
+      .skip(skip)
+      .limit(limit)
+      .exec((err, meals) => {
+        if (err) return res.status(500).json({ message: err.message });
+        const pagesRemaining = Math.ceil((total - skip) / limit);
+        return res.json({ meals, total, pagesRemaining });
+      });
   });
 };
 
