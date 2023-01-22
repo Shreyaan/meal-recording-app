@@ -1,16 +1,27 @@
 const User = require("../models/User");
-// const Meal = require("../models/meal");
+const Meal = require("../models/meal");
 
 exports.getUsers = (req, res) => {
-  try{
-    User.find({}, (err, users) => {
+  try {
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+    const skip = (page - 1) * limit;
+
+    User.countDocuments({}, (err, total) => {
       if (err) return res.status(500).json({ message: err.message });
-      return res.json(users);
+
+      User.find({})
+        .skip(skip)
+        .limit(limit)
+        .exec((err, users) => {
+          if (err) return res.status(500).json({ message: err.message });
+          const pagesRemaining = Math.ceil((total - skip) / limit);
+          return res.json({ users, total, pagesRemaining });
+        });
     });
-  }catch(err){
+  } catch (err) {
     res.status(500).json({ message: err.message });
   }
- 
 };
 
 exports.makeAdmin = (req, res) => {

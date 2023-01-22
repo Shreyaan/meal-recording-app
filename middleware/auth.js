@@ -27,8 +27,6 @@ exports.checkToken = (req, res, next) => {
 
 exports.isadmin = (req, res, next) => {
     let role = req.user.role;
-    console.log(req.user);
-    console.log(role);
     // Check if no token was provided
     if (!role) {
         return res.status(401).json({ message: 'no role is given to you' });
