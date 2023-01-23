@@ -1,0 +1,64 @@
+## **Meal Record Keeping Application**
+
+This is a meal record keeping application that allows users to log their meals, view their meal records and update them. It also includes user authentication, role-based permissions and pagination.
+
+### **Features**
+
+- User authentication using email and password with JWT token
+- Forgot password functionality
+- Add new meal records with time, meal name, and calories
+- View all meals
+- Update meal records by id
+- Role-based permissions
+    - Users can CRUD only their records
+    - Admins can CRUD everyone's records
+    - Admins can make any user an admin and make any admin a normal user
+- Pagination and other filters to fetch records
+- If calories are not entered, the application will call an API to fetch the calories via meal name.
+
+## **Getting Started**
+
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+
+### **Prerequisites**
+
+- NodeJS
+- MongoDB
+- nutritionix API key
+
+### **Installing**
+
+- Clone the repository
+
+```bash
+Copy code
+git clone https://github.com/Shreyaan/spotify-backend-dn.git
+```
+
+- Install the dependencies
+
+```bash
+yarn
+```
+
+- Create a .env file in the root directory of the project by following .env example in project root
+
+- Start the development server
+
+```
+Copy code
+npm run dev
+```
+
+## **API Routes**
+https://documenter.getpostman.com/view/19587055/2s8ZDa1gHC
+
+## **Built With** 
+
+- **[NodeJS](https://nodejs.org/)**
+- **[ExpressJS](https://expressjs.com/)**
+- **[MongoDB](https://www.mongodb.com/)**
+- **[nutritionix api](https://www.nutritionix.com/business/api)**
+
+
+
