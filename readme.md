@@ -70,4 +70,8 @@ https://documenter.getpostman.com/view/19587055/2s8ZDa1gHC
 - **[nutritionix api](https://www.nutritionix.com/business/api)**
 
 
+## **models**
 
+The User model has several fields, including email, password, role, created_at, and updated_at. The email field has a type of String and is set as required and unique. The password field is also a String and is not required. The role field is a String with a defined set of allowed values ("user" or "admin") and has a default value of "user". The created_at and updated_at fields are both Dates, with created_at having a default value of the current date and time.
+
+The Meal model has several fields, including user_id, name, servingSize, description, calories, protein, carbs, fat, created_at, and updated_at. The user_id field is an ObjectId and is required. The name field is a String and is required. The servingSize, description, calories, protein, carbs, and fat fields are Numbers, and servingSize and calories are required. The created_at and updated_at fields are both Dates, with created_at having a default value of the current date and time.
