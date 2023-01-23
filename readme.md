@@ -2,6 +2,15 @@
 
 This is a meal record keeping application that allows users to log their meals, view their meal records and update them. It also includes user authentication, role-based permissions and pagination.
 
+
+**Postman collection link** -
+
+https://www.postman.com/descent-module-architect-13586242/workspace/meal-recorder-app/collection/19587055-d0ec6f18-e1a1-4ed0-b06f-640fd5c88842?action=share&creator=19587055
+
+**Api documentation with examples** -
+
+ https://documenter.getpostman.com/view/19587055/2s8ZDa1gHC
+
 ### **Features**
 
 - User authentication using email and password with JWT token
